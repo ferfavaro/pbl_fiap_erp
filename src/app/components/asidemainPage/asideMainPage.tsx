@@ -1,9 +1,8 @@
 import { MenuIcon, LayoutDashboardIcon, HelpCircleIcon } from "lucide-react";
 
-
 export default function AsideMainPage() {
   return (
-    <aside className="h-screen w-1/6 rounded-xl bg-white">
+    <aside className=" h-screen w-1/6 rounded-xl">
       <nav className="space-y-4 h-screen justify-center bg-asideBgColor p-1">
         <div className="flex flex-row justify-start pl-2 mb-3 items-center text-WhiteTextColor">
           <a className=" flex items-center"></a>
