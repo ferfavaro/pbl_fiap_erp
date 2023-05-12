@@ -1,12 +1,12 @@
 export default function LoginPage() {
   return (
     <main
-      className=" bg-white h-screen w-screen  bg-cover  "
+      className=" bg-white h-screen w-screen justify-center bg-cover  "
       style={{
         backgroundImage: `url('/Images/LoginPage/background.png')`,
       }}
     >
-      <div className="h-screen flex items-center justify-center w-fit ml-96  p-52  rounded-xl ">
+      <div className="h-screen w-screen flex items-center justify-center w-fit  rounded-xl ">
         <div className=" flex  flex-row justify-center">
           <form className=" bg-backgroundFormColor shadow-md rounded-xl px-8 pt-6 pb-8 mb-4">
             <h2 className="flex  mb-3 justify-center text-6xl text-titleFormColor font-montSerrat">
