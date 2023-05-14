@@ -11,8 +11,8 @@ export default function supportPage() {
           <NavBar />
 
           <div className="flex  h-4/6 w-6/6 justify-center mt-16">
-            <div className=" flex flex-col w-5/12 bg-white items-center mt-10 p-8 rounded-md">
-              <span className=" flex text-black font-semibold text-3xl text-center w-64">
+            <div className=" flex flex-col w-5/12 bg-white justify-center items-center mt-10 p-8 rounded-md">
+              <span className=" flex text-black font-semibold text-3xl text-center">
                 {" "}
                 Favor escolher a melhor opção de contato
               </span>
