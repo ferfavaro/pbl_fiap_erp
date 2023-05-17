@@ -20,7 +20,10 @@ module.exports = {
         buttonTextFormColor: "#fd8534",
         WhiteTextColor: "#ffffff",
         asideBgColor:'#2e2d2d',
-        asideBgHoverColor:'#4e4e4e'
+        asideBgHoverColor:'#4e4e4e',
+        blackTextColor:'#000',
+        mainPageBgColor:'#d9d9d9',
+        bgCardModules:'#ffffff'
       },
       fontFamily: {
         "montSerrat": ["Montserrat", "sans-serif"],

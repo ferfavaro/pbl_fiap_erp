@@ -1,18 +1,18 @@
 import AsideMainPage from "../components/asidemainPage/asideMainPage";
+import Dashboard from "../components/dashboard/dashboard";
+import NavBar from "../components/nav/navBar";
 
 export default function mainPage() {
   return (
-    <div className="flex flex-1">
-      <AsideMainPage />
+    <div className="flex flex-col   h-screen  w-screen  ">
+      <div className="flex flex-1">
+        <AsideMainPage />
 
-      <main className=" flex h-screen w-screen  bg-black">
-        <p className="text-whiteTextColor">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, dolorum
-          nesciunt architecto maiores magnam consequatur quae quaerat aut
-          recusandae iste cupiditate deserunt odio corporis accusantium
-          reiciendis molestias laborum omnis reprehenderit!
-        </p>
-      </main>
+        <main className="flex-1  h-screen w-screen  bg-mainPageBgColor ">
+          <NavBar />
+          <Dashboard />
+        </main>
+      </div>
     </div>
   );
 }
