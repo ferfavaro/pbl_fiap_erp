@@ -1,6 +1,5 @@
-import Image from "next/image";
-import LoginPage from "./components/LoginPage/loginPage";
+import ListPageScreen from "./screens/listPage/page";
 
 export default function Home() {
-  return <LoginPage />;
+  return <ListPageScreen />;
 }

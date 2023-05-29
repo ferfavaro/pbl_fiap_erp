@@ -1,9 +1,29 @@
+"use client"
 import { LayoutTemplateIcon, MenuIcon, MenuSquareIcon, PencilIcon, PlusCircleIcon, SearchIcon, Trash2Icon } from "lucide-react";
+import { useState } from "react";
 
+interface Contact {
+  id: string;
+  name: string;
+  phoneNumber: string;
+  cpf: string;
+}
 
-export default function ListPage() {
+interface ListProps {
+  contacts: Contact[];
+}
+
+const ListPage: React.FC<ListProps> = ({ contacts }) => {
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(
+    null
+  );
+
+  const handleClick = (contact: Contact) => {
+    setSelectedContact(contact);
+  };
+
   return (
-    <div className=" flex flex-col w-6/6  ">
+    <div className="">
       <div className="flex flex-col bg-asideBgColor w-full h-14 p-2 pl-3">
         <h3 className="text-3xl font-bold">Módulo escolhido</h3>
       </div>
@@ -27,54 +47,34 @@ export default function ListPage() {
         </div>
       </div>
 
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
+      <table className="w-full border-b-black">
+        <thead>
+          <tr className="border-2 border-white border-b-black">
+            <th className="text-left text-black px-4 py-2">ID</th>
+            <th className="text-black text-left px-4 py-2">Nome</th>
+            <th className="text-black text-left px-4 py-2">Número de telefone</th>
+            <th className="text-black text-left px-4 py-2">CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact, index) => (
+            <tr
+              key={index}
+              onClick={() => handleClick(contact)}
+              className={`cursor-pointer ${
+                selectedContact === contact ? 'bg-gray-500' : ''
+              }`}
+            >
+              <td className="text-black px-4 py-2">{contact.id}</td>
+              <td className="text-black px-4 py-2">{contact.name}</td>
+              <td className="text-black px-4 py-2">{contact.phoneNumber}</td>
+              <td className="text-black px-4 py-2">{contact.cpf}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
+
+export default ListPage;
