@@ -1,6 +1,7 @@
 "use client"
 import { LayoutTemplateIcon, MenuIcon, MenuSquareIcon, PencilIcon, PlusCircleIcon, SearchIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
+import Link from 'next/link';
 
 interface Contact {
   id: string;
@@ -41,7 +42,9 @@ const ListPage: React.FC<ListProps> = ({ contacts }) => {
           <MenuIcon className="text-black" />
           <MenuSquareIcon className="text-black" />
           <LayoutTemplateIcon className="text-black mr-6" />
-          <PlusCircleIcon className="text-black" />
+          <Link href="/screens/inputsPage">
+            <PlusCircleIcon className="text-black" />
+          </Link>
           <PencilIcon className="text-black" />
           <Trash2Icon className="text-black" />
         </div>
