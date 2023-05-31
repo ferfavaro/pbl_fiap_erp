@@ -3,16 +3,20 @@ import { LayoutTemplateIcon, MenuIcon, MenuSquareIcon, PencilIcon, PlusCircleIco
 import { useState } from "react";
 import Link from 'next/link';
 import Produto from "@/app/domain/entities/Produto";
+import { useProduct } from "@/app/hooks/useProduct";
 
 interface ListProps {
   products: Produto[];
 }
 
 const ListPage: React.FC<ListProps> = ({ products }) => {
-  const [selectedProduct, setSelectedProduct] = useState<Produto | null>(null);
+  const [clickedProduct, setClickedProduct] = useState<Produto | null>(null);
+  const { selectedProduct } = useProduct();
 
   const handleClick = (product: Produto) => {
-    setSelectedProduct(product);
+    selectedProduct.current = product;
+    console.log(selectedProduct.current);
+    setClickedProduct(product);
   };
 
   return (

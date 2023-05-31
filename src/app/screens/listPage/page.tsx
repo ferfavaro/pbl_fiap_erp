@@ -9,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import GetAllProducts from "@/app/application/usecases/GetAllProducts";
 import ProductGateway from "@/app/infra/gateways/ProductGateway";
 import AxiosAdapter from "@/app/infra/adapters/AxiosAdapter";
+import ProductProvider from "@/app/hooks/useProduct";
 
 
 export default function ListPageScreen() {
@@ -33,9 +34,7 @@ export default function ListPageScreen() {
         <AsideMainPage />
         <main className="flex-1  h-screen w-screen  bg-bgCardModules ">
           <NavBar />
-
           <ListPage products={products}/>
-         
         </main>
       </div>
     </div>
