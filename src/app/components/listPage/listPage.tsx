@@ -2,25 +2,17 @@
 import { LayoutTemplateIcon, MenuIcon, MenuSquareIcon, PencilIcon, PlusCircleIcon, SearchIcon, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import Link from 'next/link';
-
-interface Contact {
-  id: string;
-  name: string;
-  phoneNumber: string;
-  cpf: string;
-}
+import Produto from "@/app/domain/entities/Produto";
 
 interface ListProps {
-  contacts: Contact[];
+  products: Produto[];
 }
 
-const ListPage: React.FC<ListProps> = ({ contacts }) => {
-  const [selectedContact, setSelectedContact] = useState<Contact | null>(
-    null
-  );
+const ListPage: React.FC<ListProps> = ({ products }) => {
+  const [selectedProduct, setSelectedProduct] = useState<Produto | null>(null);
 
-  const handleClick = (contact: Contact) => {
-    setSelectedContact(contact);
+  const handleClick = (product: Produto) => {
+    setSelectedProduct(product);
   };
 
   return (
@@ -42,7 +34,7 @@ const ListPage: React.FC<ListProps> = ({ contacts }) => {
           <MenuIcon className="text-black" />
           <MenuSquareIcon className="text-black" />
           <LayoutTemplateIcon className="text-black mr-6" />
-          <Link href="/screens/inputsPage">
+          <Link href={`../../screens/inputsPage/product`}>
             <PlusCircleIcon className="text-black" />
           </Link>
           <PencilIcon className="text-black" />
@@ -60,18 +52,18 @@ const ListPage: React.FC<ListProps> = ({ contacts }) => {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((contact, index) => (
+          {products.map((product, index) => (
             <tr
               key={index}
-              onClick={() => handleClick(contact)}
+              onClick={() => handleClick(product)}
               className={`cursor-pointer ${
-                selectedContact === contact ? 'bg-gray-500' : ''
+                selectedProduct === product ? 'bg-gray-500' : ''
               }`}
             >
-              <td className="text-black px-4 py-2">{contact.id}</td>
-              <td className="text-black px-4 py-2">{contact.name}</td>
-              <td className="text-black px-4 py-2">{contact.phoneNumber}</td>
-              <td className="text-black px-4 py-2">{contact.cpf}</td>
+              <td className="text-black px-4 py-2">{product.id}</td>
+              <td className="text-black px-4 py-2">{product.name}</td>
+              <td className="text-black px-4 py-2">{product.price}</td>
+              <td className="text-black px-4 py-2">{product.quantity}</td>
             </tr>
           ))}
         </tbody>

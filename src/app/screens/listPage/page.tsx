@@ -1,41 +1,40 @@
+"use client"
 import ListPage from "@/app/components/listPage/listPage";
 import AsideMainPage from "../../components/asidemainPage/asideMainPage";
 import NavBar from "../../components/nav/navBar";
+import { PlusCircleIcon } from "lucide-react";
+import Link from "next/link";
+import Produto from "@/app/domain/entities/Produto";
+import React, { useState, useEffect } from "react";
+import GetAllProducts from "@/app/application/usecases/GetAllProducts";
+import ProductGateway from "@/app/infra/gateways/ProductGateway";
+import AxiosAdapter from "@/app/infra/adapters/AxiosAdapter";
+
 
 export default function ListPageScreen() {
+  const [products, setProducts] = useState<Produto[]>([]);
 
-  interface Contact {
-    id: string;
-    name: string;
-    phoneNumber: string;
-    cpf: string;
+  async function getAllProducts() {
+    try {
+      const products = await new GetAllProducts(new ProductGateway(new AxiosAdapter())).execute();
+      setProducts(products);
+    } catch (error){
+      console.log(error);
+    }
   }
-  
-  const contacts: Contact[] = [
-    {
-      id: '1',
-      name: 'João',
-      phoneNumber: '11937287458',
-      cpf: '12345678912',
-    },
-    {
-      id: '2',
-      name: 'Maria',
-      phoneNumber: '11936277389',
-      cpf: '98765432112',
-    },
-    // Adicione mais contatos aqui
-  ];
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   return (
     <div className="flex flex-col   h-screen  w-screen  ">
       <div className="flex flex-1">
         <AsideMainPage />
-
         <main className="flex-1  h-screen w-screen  bg-bgCardModules ">
           <NavBar />
 
-          <ListPage contacts={contacts}/>
+          <ListPage products={products}/>
          
         </main>
       </div>
