@@ -1,8 +1,8 @@
-import AsideMainPage from "../components/asidemainPage/asideMainPage";
-import Dashboard from "../components/dashboard/dashboard";
-import NavBar from "../components/nav/navBar";
+import AsideMainPage from "../../components/asidemainPage/asideMainPage";
+import NavBar from "../../components/nav/navBar";
+import SupportContent from "../../components/suportContent/suport";
 
-export default function mainPage() {
+export default function supportPage() {
   return (
     <div className="flex flex-col   h-screen  w-screen  ">
       <div className="flex flex-1">
@@ -10,7 +10,7 @@ export default function mainPage() {
 
         <main className="flex-1  h-screen w-screen  bg-mainPageBgColor ">
           <NavBar />
-          <Dashboard />
+          <SupportContent />
         </main>
       </div>
     </div>

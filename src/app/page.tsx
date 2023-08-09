@@ -1,6 +1,10 @@
-import Image from "next/image";
-import LoginPage from "./components/LoginPage/loginPage";
+import ProductProvider from "./hooks/useProduct";
+import ListPageScreen from "./screens/listPage/page";
 
 export default function Home() {
-  return <LoginPage />;
+  return (
+    <ProductProvider>
+      <ListPageScreen />
+    </ProductProvider>
+  );
 }

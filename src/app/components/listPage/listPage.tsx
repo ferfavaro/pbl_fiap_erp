@@ -1,9 +1,26 @@
+"use client"
 import { LayoutTemplateIcon, MenuIcon, MenuSquareIcon, PencilIcon, PlusCircleIcon, SearchIcon, Trash2Icon } from "lucide-react";
+import { useState } from "react";
+import Link from 'next/link';
+import Produto from "@/app/domain/entities/Produto";
+import { useProduct } from "@/app/hooks/useProduct";
 
+interface ListProps {
+  products: Produto[];
+}
 
-export default function ListPage() {
+const ListPage: React.FC<ListProps> = ({ products }) => {
+  const [clickedProduct, setClickedProduct] = useState<Produto | null>(null);
+  const { selectedProduct } = useProduct();
+
+  const handleClick = (product: Produto) => {
+    selectedProduct.current = product;
+    console.log(selectedProduct.current);
+    setClickedProduct(product);
+  };
+
   return (
-    <div className=" flex flex-col w-6/6  ">
+    <div className="">
       <div className="flex flex-col bg-asideBgColor w-full h-14 p-2 pl-3">
         <h3 className="text-3xl font-bold">Módulo escolhido</h3>
       </div>
@@ -21,60 +38,42 @@ export default function ListPage() {
           <MenuIcon className="text-black" />
           <MenuSquareIcon className="text-black" />
           <LayoutTemplateIcon className="text-black mr-6" />
-          <PlusCircleIcon className="text-black" />
+          <Link href={`../../screens/inputsPage/product`}>
+            <PlusCircleIcon className="text-black" />
+          </Link>
           <PencilIcon className="text-black" />
           <Trash2Icon className="text-black" />
         </div>
       </div>
 
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
-
-      <div className="flex flex-row border-2 border-white border-b-black pl-2 mt-2">
-        <span className="text-base text-black pl-1 "> ID |</span>
-        <span className="text-base text-black pl-1">Kaique Ferraz |</span>
-        <span className="text-base text-black pl-1">Número de telefone |</span>
-        <span className="text-base text-black pl-1"> CPF </span>
-      </div>
+      <table className="w-full border-b-black">
+        <thead>
+          <tr className="border-2 border-white border-b-black">
+            <th className="text-left text-black px-4 py-2">ID</th>
+            <th className="text-black text-left px-4 py-2">Nome</th>
+            <th className="text-black text-left px-4 py-2">Número de telefone</th>
+            <th className="text-black text-left px-4 py-2">CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product, index) => (
+            <tr
+              key={index}
+              onClick={() => handleClick(product)}
+              className={`cursor-pointer ${
+                selectedProduct === product ? 'bg-gray-500' : ''
+              }`}
+            >
+              <td className="text-black px-4 py-2">{product.id}</td>
+              <td className="text-black px-4 py-2">{product.name}</td>
+              <td className="text-black px-4 py-2">{product.price}</td>
+              <td className="text-black px-4 py-2">{product.quantity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
+
+export default ListPage;
