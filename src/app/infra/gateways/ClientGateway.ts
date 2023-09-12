@@ -30,6 +30,16 @@ export default class ClientGateway {
     return response;
   }
 
+  async editClient(id: string, clientName: string) {
+    const response = await this.httpClient.update<Output>(
+      `localhost:8080/cliente/updateClient/${id}`, 
+      {
+        nm_cliente: clientName,
+      }
+    );
+    return response;
+  }
+
   async deleteClient(clientId: string) {
     const response = await this.httpClient.delete<Output>(
       `localhost:8080/client/deleteClient/${clientId}`, 

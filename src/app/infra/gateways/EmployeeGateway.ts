@@ -37,6 +37,20 @@ export default class EmployeeGateway {
     return response;
   }
 
+  async editEmployee(id: string, name: string, dtAdmissao: number, vlSalario: string, dsFuncao: string) {
+    const response = await this.httpClient.update<Output>(
+      `localhost:8080/funcionario/updateFuncionario/${id}`, 
+      {
+        id_funcionario: id,
+        nm_nome: name,
+        dt_admissao: dtAdmissao,
+        vl_salario: vlSalario,
+        ds_funcao: dsFuncao,
+      }
+    );
+    return response;
+  }
+
   async deleteEmployee(id: string) {
     const response = await this.httpClient.delete<Output>(
       `localhost:8080/funcionario/deleteFuncionarioByid/${id}`, 

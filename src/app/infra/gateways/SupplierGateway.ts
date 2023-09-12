@@ -34,6 +34,19 @@ export default class SupplierGateway {
     return response;
   }
 
+  async editSupplier(id: string, name: string, dtPedido: number, vlPedido: string) {
+    const response = await this.httpClient.update<Output>(
+      `localhost:8080/dealer/updateFornecedor/${id}`, 
+      {
+        id_Pedido: id,
+        ds_pedido: name,
+        dt_pedido: dtPedido,
+        vl_pedido: vlPedido,
+      }
+    );
+    return response;
+  }
+
   async deleteSupplier(id: string) {
     const response = await this.httpClient.delete<Output>(
       `localhost:8080/dealer/deleteSupplier/${id}`, 

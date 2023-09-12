@@ -22,7 +22,7 @@ const ListPage: React.FC<ListProps> = ({ products }) => {
   return (
     <div className="">
       <div className="flex flex-col bg-asideBgColor w-full h-14 p-2 pl-3">
-        <h3 className="text-3xl font-bold">Módulo escolhido</h3>
+        <h3 className="text-3xl font-bold">Módulo Produto</h3>
       </div>
 
       <div className="flex flex-row w-full bg-mainPageBgColor h-12 p-4">
@@ -51,8 +51,8 @@ const ListPage: React.FC<ListProps> = ({ products }) => {
           <tr className="border-2 border-white border-b-black">
             <th className="text-left text-black px-4 py-2">ID</th>
             <th className="text-black text-left px-4 py-2">Nome</th>
-            <th className="text-black text-left px-4 py-2">Número de telefone</th>
-            <th className="text-black text-left px-4 py-2">CPF</th>
+            <th className="text-black text-left px-4 py-2">Valor</th>
+            <th className="text-black text-left px-4 py-2">Quantidade</th>
           </tr>
         </thead>
         <tbody>
@@ -60,9 +60,8 @@ const ListPage: React.FC<ListProps> = ({ products }) => {
             <tr
               key={index}
               onClick={() => handleClick(product)}
-              className={`cursor-pointer ${
-                selectedProduct === product ? 'bg-gray-500' : ''
-              }`}
+              className={`cursor-pointer ${selectedProduct === product ? 'bg-gray-500' : ''
+                }`}
             >
               <td className="text-black px-4 py-2">{product.id}</td>
               <td className="text-black px-4 py-2">{product.name}</td>

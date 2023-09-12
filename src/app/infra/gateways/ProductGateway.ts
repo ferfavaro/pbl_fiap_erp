@@ -34,6 +34,18 @@ export default class ProductGateway {
     return response;
   }
 
+  async editProduct(id: string, productName: string, productPrice: string, productQuantity: number) {
+    const response = await this.httpClient.update<Output>(
+      `localhost:8080/produto/updateProduct/${id}`, 
+      {
+        nm_produto: productName,
+        vl_produto: productPrice,
+        qt_produto: productQuantity
+      }
+    );
+    return response;
+  }
+
   async deleteProduct(productId: string) {
     const response = await this.httpClient.delete<Output>(
       `localhost:8080/produto/deleteProduct/${productId}`, 

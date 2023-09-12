@@ -35,6 +35,19 @@ export default class OrderGateway {
     return response;
   }
 
+  async editOrder(id: string, name: string, dtPedido: number, vlPedido: string) {
+    const response = await this.httpClient.update<Output>(
+      `localhost:8080/pedido/updateOrderById/${id}`, 
+      {
+        id_Pedido: id,
+        ds_pedido: name,
+        dt_pedido: dtPedido,
+        vl_pedido: vlPedido,
+      }
+    );
+    return response;
+  }
+
   async deleteOrder(id: string) {
     const response = await this.httpClient.delete<Output>(
       `localhost:8080/pedido/deleteOrder/${id}`, 
