@@ -10,10 +10,10 @@ export default function Dashboard() {
         <h3 className=" text-xl text-black mb-5 font-bold">
           Cliente/colaborador
         </h3>
-        <a onClick={() => router.push("/screens/inputsPage/client")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar usuário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover usuário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar dados do usuário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Lista de usuários</a>
+        <a onClick={() => router.push("/screens/inputsPage/client")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar Cliente</a>
+        <a onClick={() => router.push("/screens/listPage/client")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover Cliente</a>
+        <a onClick={() => router.push("/screens/listPage/client")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar dados do Cliente</a>
+        <a onClick={() => router.push("/screens/listPage/client")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Lista de Clientes</a>
       </div>
 
       <div className="flex flex-col bg-bgCardModules p-2 rounded-xl">
@@ -30,10 +30,10 @@ export default function Dashboard() {
         <h3 className=" text-xl text-black mb-5 font-bold">
           Funcionário
         </h3>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar Funcionário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover Funcionário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar Dados do Funcionário</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Ver Funcionários</a>
+        <a onClick={() => router.push("/screens/inputsPage/employee")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar Funcionário</a>
+        <a onClick={() => router.push("/screens/listPage/employee")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover Funcionário</a>
+        <a onClick={() => router.push("/screens/listPage/employee")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar Dados do Funcionário</a>
+        <a onClick={() => router.push("/screens/listPage/employee")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Ver Funcionários</a>
       </div>
 
 
@@ -41,10 +41,10 @@ export default function Dashboard() {
         <h3 className=" text-xl text-black mb-5 font-bold">
           Pedido
         </h3>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar Pedido</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover Pedido</a>
-        <a className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar Pedido</a>
-        <a className="text-base text-black mb-1 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Ver Pedidos</a>
+        <a onClick={() => router.push("/screens/inputsPage/order")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Cadastrar Pedido</a>
+        <a onClick={() => router.push("/screens/listPage/order")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Remover Pedido</a>
+        <a onClick={() => router.push("/screens/listPage/order")} className="text-base text-black mb-4 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Editar Pedido</a>
+        <a onClick={() => router.push("/screens/listPage/order")} className="text-base text-black mb-1 font-semibold pl-1 h-8 bg-mainPageBgColor rounded-md"> Ver Pedidos</a>
       </div>
     </div>
   )
