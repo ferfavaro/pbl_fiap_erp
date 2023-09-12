@@ -1,6 +1,9 @@
+"use client"
 import { MenuIcon, LayoutDashboardIcon, HelpCircleIcon } from "lucide-react";
+import { useRouter } from 'next/navigation'
 
 export default function AsideMainPage() {
+  const router = useRouter();
   return (
     <aside className=" h-screen w-1/6 rounded-xl">
       <nav className="space-y-4 h-screen justify-center bg-asideBgColor p-1">
@@ -13,7 +16,7 @@ export default function AsideMainPage() {
           </h2>
         </div>
 
-        <div className="flex flex-row justify-start pl-2 mb-3 items-center text-WhiteTextColor hover:bg-asideBgHoverColor">
+        <div onClick={() => router.push("/screens/homepage")} className="flex flex-row justify-start pl-2 mb-3 items-center text-WhiteTextColor hover:bg-asideBgHoverColor">
           <LayoutDashboardIcon size={52} />
           <a className=" flex items-center  text-md pl-2">Modulo</a>
         </div>

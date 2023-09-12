@@ -1,10 +1,14 @@
+import ClientProvider from "./hooks/useClient";
 import ProductProvider from "./hooks/useProduct";
-import ListPageScreen from "./screens/listPage/page";
+import MainPage from "./screens/homepage/page";
+import LoginPage from "./screens/loginPage/page";
 
 export default function Home() {
   return (
-    <ProductProvider>
-      <ListPageScreen />
-    </ProductProvider>
+    <ClientProvider>
+      <ProductProvider>
+        <LoginPage />
+      </ProductProvider>
+    </ClientProvider>
   );
 }

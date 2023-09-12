@@ -8,6 +8,12 @@ export default class AxiosAdapter implements HttpClient {
     };
   }
 
+  private headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
+  };
+
   async get(url: string): Promise<any> {
     console.log(url);
     const response = await axios.get(url);
@@ -20,7 +26,7 @@ export default class AxiosAdapter implements HttpClient {
 
   async post(url: string, data: any): Promise<any> {
     console.log(url);
-    const response = await axios.post(url, data);
+    const response = await axios.post(url, data, {headers: this.headers});
     if (response.status >= 400) {
       return Promise.reject(
       );

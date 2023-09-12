@@ -1,7 +1,6 @@
 "use client"
-import ListPage from "@/app/components/listPage/listPage";
-import AsideMainPage from "../../components/asidemainPage/asideMainPage";
-import NavBar from "../../components/nav/navBar";
+import AsideMainPage from "../../../components/asidemainPage/asideMainPage";
+import NavBar from "../../../components/nav/navBar";
 import { PlusCircleIcon } from "lucide-react";
 import Link from "next/link";
 import Produto from "@/app/domain/entities/Produto";
@@ -10,6 +9,7 @@ import GetAllProducts from "@/app/application/usecases/GetAllProducts";
 import ProductGateway from "@/app/infra/gateways/ProductGateway";
 import AxiosAdapter from "@/app/infra/adapters/AxiosAdapter";
 import ProductProvider from "@/app/hooks/useProduct";
+import ListPage from "@/app/components/listPage/product/page";
 
 
 export default function ListPageScreen() {
@@ -19,7 +19,7 @@ export default function ListPageScreen() {
     try {
       const products = await new GetAllProducts(new ProductGateway(new AxiosAdapter())).execute();
       setProducts(products);
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -34,7 +34,7 @@ export default function ListPageScreen() {
         <AsideMainPage />
         <main className="flex-1  h-screen w-screen  bg-bgCardModules ">
           <NavBar />
-          <ListPage products={products}/>
+          <ListPage products={products} />
         </main>
       </div>
     </div>
