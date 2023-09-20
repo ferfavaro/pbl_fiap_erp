@@ -3,4 +3,5 @@ export default interface HttpClient {
   post<T>(url: string, data: any): Promise<T>;
   update<T>(url: string, data: any): Promise<T>;
   delete<T>(url: string, data: any): Promise<T>;
+  setAuthToken(token: string): void;
 }

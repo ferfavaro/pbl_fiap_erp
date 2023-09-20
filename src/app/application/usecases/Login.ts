@@ -4,7 +4,8 @@ export default class Login {
   constructor(readonly userGateway: UserGateway){}
 
   async execute (email: string, password: string) {
-    const products = await this.userGateway.login(email, password);
-    return products;
+    const user = await this.userGateway.login(email, password);
+    this.userGateway.setAuthToken(user.token);
+    return user;
   }
 }

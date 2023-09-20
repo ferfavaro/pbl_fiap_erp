@@ -23,8 +23,7 @@ export default function LoginPage() {
   async function signIn(email: string, password: string) {
     try {
       const signIn = await new SignIn(new UserGateway(new AxiosAdapter())).execute(email, password);
-      console.log(signIn);
-      router.push("../homepage")
+      router.push("../screens/homepage")
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +31,7 @@ export default function LoginPage() {
 
   async function login(email: string, password: string) {
     try {
-      // const login = await new Login(new UserGateway(new AxiosAdapter())).execute(email, password);
+      const login = await new Login(new UserGateway(new AxiosAdapter())).execute(email, password);
       router.push("/screens/homepage")
     } catch (error) {
       console.log(error);

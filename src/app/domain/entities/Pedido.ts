@@ -4,5 +4,6 @@ export default class Pedido {
     readonly ds_pedido?: string,
     readonly dt_pedido?: string,
     readonly vl_pedido?: string,
+    readonly id_cliente?: number,
   ) {}
 }

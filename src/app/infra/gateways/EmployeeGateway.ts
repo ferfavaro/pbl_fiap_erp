@@ -23,23 +23,25 @@ export default class EmployeeGateway {
     return result;
   }
 
-  async createEmployee(id: string, name: string, dtAdmissao: number, vlSalario: string, dsFuncao: string) {
+  async createEmployee(name: string, dtAdmissao: string, vlSalario: string, dsFuncao: string) {
     const response = await this.httpClient.post<Output>(
-      `localhost:8080/funcionario/addFuncionario`, 
+      `http://localhost:8080/funcionario/addFuncionario`, 
       {
-        id_funcionario: id,
         nm_nome: name,
         dt_admissao: dtAdmissao,
         vl_salario: vlSalario,
         ds_funcao: dsFuncao,
+        T_equipe_id_equipe: {
+          id_equipe: 1
+        }
       }
     );
     return response;
   }
 
-  async editEmployee(id: string, name: string, dtAdmissao: number, vlSalario: string, dsFuncao: string) {
+  async editEmployee(id: number, name: string, dtAdmissao: string, vlSalario: string, dsFuncao: string) {
     const response = await this.httpClient.update<Output>(
-      `localhost:8080/funcionario/updateFuncionario/${id}`, 
+      `http://localhost:8080/funcionario/updateFuncionario/${id}`, 
       {
         id_funcionario: id,
         nm_nome: name,
@@ -51,9 +53,9 @@ export default class EmployeeGateway {
     return response;
   }
 
-  async deleteEmployee(id: string) {
+  async deleteEmployee(id: number) {
     const response = await this.httpClient.delete<Output>(
-      `localhost:8080/funcionario/deleteFuncionarioByid/${id}`, 
+      `http://localhost:8080/funcionario/deleteFuncionarioByid/${id}`, 
       {
 
       }

@@ -8,17 +8,24 @@ interface IProps {
 
 interface EmployeeContextData {
   employee: Funcionario | null;
-  selectedEmployee: React.MutableRefObject<Funcionario | undefined>
+  employees: React.MutableRefObject<Funcionario[] | null>;
+  selectedEmployee: React.MutableRefObject<Funcionario | null>
+  removeEmployee: (employeeId: number) => void;
 }
 
 const EmployeeContext = createContext<EmployeeContextData>({} as EmployeeContextData);
 
 export default function EmployeeProvider({ children }: IProps) {
-  const selectedEmployee = useRef<Funcionario | undefined>();
+  const selectedEmployee = useRef<Funcionario | null>(null);
   const [employee, setEmployee] = useState<Funcionario | null>(null);
+  const employees = useRef<Funcionario[]>([]);
+
+  const removeEmployee = (employeeId: number) => {
+    employees.current = employees.current?.filter((e) => e.id !== employeeId);
+  };
 
   return (
-    <EmployeeContext.Provider value={{ employee, selectedEmployee }}>
+    <EmployeeContext.Provider value={{ employee, employees, selectedEmployee, removeEmployee }}>
       {children}
     </EmployeeContext.Provider>
   )

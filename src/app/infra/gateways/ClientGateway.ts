@@ -22,7 +22,7 @@ export default class ClientGateway {
 
   async createClient(clientName: string) {
     const response = await this.httpClient.post<Output>(
-      `localhost:8080/cliente/addUser/client`, 
+      `http://localhost:8080/cliente/addUser/client`, 
       {
         nm_cliente: clientName,
       }
@@ -30,9 +30,9 @@ export default class ClientGateway {
     return response;
   }
 
-  async editClient(id: string, clientName: string) {
+  async editClient(id: number, clientName: string) {
     const response = await this.httpClient.update<Output>(
-      `localhost:8080/cliente/updateClient/${id}`, 
+      `http://localhost:8080/cliente/updateClient/${id}`, 
       {
         nm_cliente: clientName,
       }
@@ -40,9 +40,9 @@ export default class ClientGateway {
     return response;
   }
 
-  async deleteClient(clientId: string) {
+  async deleteClient(clientId: number) {
     const response = await this.httpClient.delete<Output>(
-      `localhost:8080/client/deleteClient/${clientId}`, 
+      `http://localhost:8080/cliente/deleteClient/${clientId}`, 
       {
 
       }

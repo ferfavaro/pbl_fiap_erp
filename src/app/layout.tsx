@@ -1,5 +1,11 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import ClientProvider from "./hooks/useClient";
+import UserProvider from "./hooks/useUser";
+import ProductProvider from "./hooks/useProduct";
+import EmployeeProvider from "./hooks/useEmployee";
+import SupplierProvider from "./hooks/useSupplier";
+import OrderProvider from "./hooks/useOrder";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +21,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <UserProvider>
+          <ProductProvider>
+            <SupplierProvider>
+              <OrderProvider>
+                <EmployeeProvider>
+                  <ClientProvider>
+                    {children}
+                  </ClientProvider>
+                </EmployeeProvider>
+              </OrderProvider>
+            </SupplierProvider>
+          </ProductProvider>
+        </UserProvider>
+      </body>
     </html>
   );
 }

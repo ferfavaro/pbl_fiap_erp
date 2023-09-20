@@ -1,3 +1,4 @@
+import User from "@/app/domain/entities/User";
 import HttpClient from "../adapters/HttpClient";
 
 export default class ProductGateway {
@@ -9,7 +10,7 @@ export default class ProductGateway {
       {
         login: email,
         ds_password: password,
-        ds_role: "USER"
+        ds_role: "ADMIN"
       }
     );
     return response;
@@ -23,11 +24,16 @@ export default class ProductGateway {
         ds_password: password,
       }
     );
-    return response;
+    const result = new User(response.token)
+    return result;
+  }
+
+  setAuthToken(token: string) {
+    this.httpClient.setAuthToken(token);
   }
 }
 
-type Output = [
+type Output = 
   {
+    token: string;
   }
-]

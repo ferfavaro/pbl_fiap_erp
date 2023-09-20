@@ -8,17 +8,24 @@ interface IProps {
 
 interface OrderContextData {
   order: Pedido | null;
-  selectedOrder: React.MutableRefObject<Pedido | undefined>
+  orders: React.MutableRefObject<Pedido[] | null>;
+  selectedOrder: React.MutableRefObject<Pedido | null>
+  removeOrder: (orderId: number) => void;
 }
 
 const OrderContext = createContext<OrderContextData>({} as OrderContextData);
 
 export default function OrderProvider({ children }: IProps) {
-  const selectedOrder = useRef<Pedido | undefined>();
+  const selectedOrder = useRef<Pedido | null>(null);
   const [order, setOrder] = useState<Pedido | null>(null);
+  const orders = useRef<Pedido[]>([]);
+
+  const removeOrder = (orderId: number) => {
+    orders.current = orders.current?.filter((e) => e.id !== orderId);
+  };
 
   return (
-    <OrderContext.Provider value={{ order, selectedOrder }}>
+    <OrderContext.Provider value={{ order, orders, selectedOrder, removeOrder }}>
       {children}
     </OrderContext.Provider>
   )

@@ -24,7 +24,7 @@ export default class ProductGateway {
 
   async createProduct(productName: string, productPrice: string, productQuantity: number) {
     const response = await this.httpClient.post<Output>(
-      `localhost:8080/produto/addProduct/product`, 
+      `http://localhost:8080/produto/addProduct/product`, 
       {
         nm_produto: productName,
         vl_produto: productPrice,
@@ -34,9 +34,9 @@ export default class ProductGateway {
     return response;
   }
 
-  async editProduct(id: string, productName: string, productPrice: string, productQuantity: number) {
+  async editProduct(id: number, productName: string, productPrice: string, productQuantity: number) {
     const response = await this.httpClient.update<Output>(
-      `localhost:8080/produto/updateProduct/${id}`, 
+      `http://localhost:8080/produto/updateProduct/${id}`, 
       {
         nm_produto: productName,
         vl_produto: productPrice,
@@ -46,9 +46,9 @@ export default class ProductGateway {
     return response;
   }
 
-  async deleteProduct(productId: string) {
+  async deleteProduct(productId: number) {
     const response = await this.httpClient.delete<Output>(
-      `localhost:8080/produto/deleteProduct/${productId}`, 
+      `http://localhost:8080/produto/deleteProduct/${productId}`, 
       {
 
       }

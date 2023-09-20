@@ -16,41 +16,47 @@ export default class OrderGateway {
         orderResponse.ds_pedido,
         orderResponse.dt_pedido,
         orderResponse.vl_pedido,
+        orderResponse.T_cliente_id_cliente.id_cliente
       )
       result.push(orderEntity);
     }
     return result;
   }
 
-  async createOrder(id: string, name: string, dtPedido: number, vlPedido: string) {
+  async createOrder(name: string, dtPedido: string, vlPedido: string, idCliente: number) {
     const response = await this.httpClient.post<Output>(
-      `localhost:8080/pedido/addPedido/Pedido`, 
+      `http://localhost:8080/pedido/addPedido/Pedido`, 
       {
-        id_Pedido: id,
         ds_pedido: name,
         dt_pedido: dtPedido,
         vl_pedido: vlPedido,
+        T_cliente_id_cliente: {
+          id_cliente: idCliente
+        },
       }
     );
     return response;
   }
 
-  async editOrder(id: string, name: string, dtPedido: number, vlPedido: string) {
+  async editOrder(id: number, name: string, dtPedido: string, vlPedido: string, idCliente: number) {
     const response = await this.httpClient.update<Output>(
-      `localhost:8080/pedido/updateOrderById/${id}`, 
+      `http://localhost:8080/pedido/updateOrderById/${id}`, 
       {
         id_Pedido: id,
         ds_pedido: name,
         dt_pedido: dtPedido,
         vl_pedido: vlPedido,
+        T_cliente_id_cliente: {
+          id_cliente: idCliente
+        }
       }
     );
     return response;
   }
 
-  async deleteOrder(id: string) {
+  async deleteOrder(id: number) {
     const response = await this.httpClient.delete<Output>(
-      `localhost:8080/pedido/deleteOrder/${id}`, 
+      `http://localhost:8080/pedido/deleteOrder/${id}`, 
       {
 
       }
@@ -65,5 +71,8 @@ type Output = [
     ds_pedido: string;
     dt_pedido: string;
     vl_pedido: string;
+    T_cliente_id_cliente: {
+      id_cliente: number
+    }
   }
 ]

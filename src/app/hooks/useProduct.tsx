@@ -7,18 +7,25 @@ interface IProps {
 }
 
 interface ProdutoContextData {
-  produto: Produto | null;
-  selectedProduct: React.MutableRefObject<Produto | undefined>
+  product: Produto | null;
+  products: React.MutableRefObject<Produto[] | null>;
+  selectedProduct: React.MutableRefObject<Produto | null>;
+  removeProduct: (productId: number) => void;
 }
 
 const ProductContext = createContext<ProdutoContextData>({} as ProdutoContextData);
 
-export default function ProductProvider ({ children }: IProps) {
-  const selectedProduct = useRef<Produto | undefined>();
-  const [produto, setProduto] = useState<Produto | null>(null);
+export default function ProductProvider({ children }: IProps) {
+  const selectedProduct = useRef<Produto | null>(null);
+  const [product, setProduct] = useState<Produto | null>(null);
+  const products = useRef<Produto[]>([]);
+
+  const removeProduct = (productId: number) => {
+    products.current = products.current?.filter((e) => e.id !== productId);
+  };
 
   return (
-    <ProductContext.Provider value={{ produto, selectedProduct }}>
+    <ProductContext.Provider value={{ product, products, selectedProduct, removeProduct }}>
       {children}
     </ProductContext.Provider>
   )

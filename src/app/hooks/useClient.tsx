@@ -8,17 +8,24 @@ interface IProps {
 
 interface ClientContextData {
   client: Cliente | null;
-  selectedClient: React.MutableRefObject<Cliente | undefined>
+  clients: React.MutableRefObject<Cliente[] | null>;
+  selectedClient: React.MutableRefObject<Cliente | null>;
+  removeClient: (clientId: number) => void;
 }
 
 const ClientContext = createContext<ClientContextData>({} as ClientContextData);
 
 export default function ClientProvider({ children }: IProps) {
-  const selectedClient = useRef<Cliente | undefined>();
+  const selectedClient = useRef<Cliente | null>(null);
   const [client, setClient] = useState<Cliente | null>(null);
+  const clients = useRef<Cliente[]>([]);
+
+  const removeClient = (clientId: number) => {
+    clients.current = clients.current?.filter((c) => c.id !== clientId);
+  };
 
   return (
-    <ClientContext.Provider value={{ client, selectedClient }}>
+    <ClientContext.Provider value={{ client, clients, selectedClient, removeClient }}>
       {children}
     </ClientContext.Provider>
   )

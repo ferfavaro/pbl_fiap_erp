@@ -21,35 +21,32 @@ export default class SupplierGateway {
     return result;
   }
 
-  async createSupplier(id: string, name: string, dtPedido: number, vlPedido: string) {
+  async createSupplier(nm_email: string, nm_fornecedor: string) {
     const response = await this.httpClient.post<Output>(
-      `localhost:8080/dealer/postFornecedor`, 
+      `http://localhost:8080/dealer/postFornecedor`, 
       {
-        id_Pedido: id,
-        ds_pedido: name,
-        dt_pedido: dtPedido,
-        vl_pedido: vlPedido,
+        nm_email: nm_email,
+        nm_fornecedor: nm_fornecedor,
       }
     );
     return response;
   }
 
-  async editSupplier(id: string, name: string, dtPedido: number, vlPedido: string) {
+  async editSupplier(id: number, nm_email: string, nm_fornecedor: string) {
     const response = await this.httpClient.update<Output>(
-      `localhost:8080/dealer/updateFornecedor/${id}`, 
+      `http://localhost:8080/dealer/updateFornecedor/${id}`, 
       {
-        id_Pedido: id,
-        ds_pedido: name,
-        dt_pedido: dtPedido,
-        vl_pedido: vlPedido,
+        id_fornecedor: id,
+        nm_email: nm_email,
+        nm_fornecedor: nm_fornecedor,
       }
     );
     return response;
   }
 
-  async deleteSupplier(id: string) {
+  async deleteSupplier(id: number) {
     const response = await this.httpClient.delete<Output>(
-      `localhost:8080/dealer/deleteSupplier/${id}`, 
+      `http://localhost:8080/dealer/deleteDealer/${id}`, 
       {
 
       }

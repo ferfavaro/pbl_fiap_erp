@@ -8,12 +8,6 @@ export default class AxiosAdapter implements HttpClient {
     };
   }
 
-  private headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-    'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
-  };
-
   async get(url: string): Promise<any> {
     console.log(url);
     const response = await axios.get(url);
@@ -26,7 +20,7 @@ export default class AxiosAdapter implements HttpClient {
 
   async post(url: string, data: any): Promise<any> {
     console.log(url);
-    const response = await axios.post(url, data, {headers: this.headers});
+    const response = await axios.post(url, data);
     if (response.status >= 400) {
       return Promise.reject(
       );
@@ -44,6 +38,15 @@ export default class AxiosAdapter implements HttpClient {
   }
 
   async delete(url: string, data: any): Promise<any> {
-    throw new Error("Method not implemented.");
+    const response = await axios.delete(url, data);
+    if (response.status >= 400) {
+      return Promise.reject(
+      );
+    }
+    return response.data;
+  }
+
+  setAuthToken(token: string): void {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 }

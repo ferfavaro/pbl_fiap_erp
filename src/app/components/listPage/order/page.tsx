@@ -15,7 +15,6 @@ const ListPage: React.FC<ListProps> = ({ orders }) => {
 
   const handleClick = (order: Pedido) => {
     selectedOrder.current = order;
-    console.log(selectedOrder.current);
     setClickedOrder(order);
   };
 
